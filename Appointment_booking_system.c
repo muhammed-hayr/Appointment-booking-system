@@ -1,3 +1,5 @@
+
+//************************************************************ */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -5,7 +7,7 @@
 #define MAX_PATIENTS 100
 #define MAX_TRIES 3
 #define PASSWORD "1234"
-
+#define PASSWORD_1 "12345"
 typedef struct {
     char name[50];
     int age;
