@@ -1,5 +1,3 @@
-
-//************************************************************ */
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -8,6 +6,7 @@
 #define MAX_TRIES 3
 #define PASSWORD "1234"
 
+// Struct to store patient information
 typedef struct {
     char name[50];
     int age;
@@ -15,6 +14,7 @@ typedef struct {
     int id;
 } Patient;
 
+// Struct to store reservation information
 typedef struct {
     int id;
     char slot[20];
@@ -24,6 +24,7 @@ Patient patients[MAX_PATIENTS];
 Reservation reservations[5];
 int patientCount = 0;
 
+// Initializes the reservation slots with default times and sets IDs to -1 indicating they are available
 void initReservations() {
     strcpy(reservations[0].slot, "2pm to 2:30pm");
     strcpy(reservations[1].slot, "2:30pm to 3pm");
@@ -35,6 +36,7 @@ void initReservations() {
     }
 }
 
+// Finds a patient by their ID and returns the index in the patients array, or -1 if not found
 int findPatientByID(int id) {
     for(int i = 0; i < patientCount; i++) {
         if(patients[i].id == id) {
@@ -44,6 +46,7 @@ int findPatientByID(int id) {
     return -1;
 }
 
+// Adds a new patient record to the system
 void addPatient() {
     if(patientCount >= MAX_PATIENTS) {
         printf("Patient list is full!\n");
@@ -69,6 +72,7 @@ void addPatient() {
     printf("Patient added successfully!\n");
 }
 
+// Edits an existing patient's information based on their ID
 void editPatient() {
     int id;
     printf("Enter patient ID to edit: ");
@@ -88,6 +92,7 @@ void editPatient() {
     printf("Patient record updated successfully!\n");
 }
 
+// Reserves a slot with the doctor for a patient
 void reserveSlot() {
     printf("Available slots:\n");
     for(int i = 0; i < 5; i++) {
@@ -116,6 +121,7 @@ void reserveSlot() {
     printf("Slot reserved successfully!\n");
 }
 
+// Cancels a reservation for a patient based on their ID
 void cancelReservation() {
     int id;
     printf("Enter patient ID to cancel reservation: ");
@@ -130,6 +136,7 @@ void cancelReservation() {
     printf("No reservation found for the given ID.\n");
 }
 
+// Views the record of a specific patient based on their ID
 void viewPatientRecord() {
     int id;
     printf("Enter patient ID to view record: ");
@@ -146,6 +153,7 @@ void viewPatientRecord() {
     printf("ID: %d\n", patients[index].id);
 }
 
+// Views all reservations for the day, listing the patient ID for each reserved slot
 void viewReservations() {
     printf("Today's reservations:\n");
     for(int i = 0; i < 5; i++) {
@@ -155,6 +163,7 @@ void viewReservations() {
     }
 }
 
+// Handles admin mode functionality, including password protection
 void adminMode() {
     char password[20];
     int tries = 0;
@@ -193,6 +202,7 @@ void adminMode() {
     exit(0);
 }
 
+// Handles user mode functionality
 void userMode() {
     int choice;
     do {
@@ -211,6 +221,7 @@ void userMode() {
     } while(choice != 3);
 }
 
+// Main function to start the program and handle mode selection
 int main() {
     initReservations();
     int mode;
